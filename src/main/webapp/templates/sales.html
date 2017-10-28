@@ -1,0 +1,173 @@
+<div ng-controller="SalesController">
+	<div class="row">
+		<div class="col-md-12" style="text-align:center;">
+			<div class="cardStyle">
+				<div style="display: inline-block; margin-right: 50px">
+					<span> FROM</span>
+					<md-datepicker ng-model="dateFrom" md-placeholder="Enter date"></md-datepicker>
+				</div>
+				<div style="display: inline-block; margin-right: 50px">
+					<span> TO</span>
+					<md-datepicker ng-model="dateTo" md-placeholder="Enter date"></md-datepicker>
+				</div>
+				<div style="display: inline-block;">
+					<md-button class="md-primary md-raised" ng-click="filterWithDate()">
+					FILTER </md-button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12" style="text-align:center">
+			<h4>Total Credit Amount : {{totalCategoryAmount}}</h4>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="cardStyle">
+				<h4 align='center'>ITEMS</h4>
+				<div style="position: relative;">
+					<input type="text" ng-model="itemname" placeholder="Search"
+						class="form-control" /> <a href="#" class="search-icon"> <i
+						class="fa fa-search" id="myimage"></i>
+					</a>
+				</div>
+				<md-list class="md-dense"
+					style="width:100%;height:300px;overflow:auto;" flex> <md-list-item
+					ng-repeat="orderItem in sales.items | filter : itemname">
+				<div class="row" style="width: 100%;">
+					<div class="col-xs-2">
+						<img ng-src="{{orderItem.face}}?{{$index}}" class="md-avatar"
+							alt="{{orderItem.who}}" />
+					</div>
+					<div class="col-xs-9">
+						<h4>{{ orderItem.item.itemName }}</h4>
+						<p style="color: grey;">X {{ orderItem.quantity }}</p>
+					</div>
+					<div class="col-xs-1">
+						<h4 align="right">{{ orderItem.quantity*orderItem.item.price
+							}}</h4>
+					</div>
+				</div>
+				<md-divider></md-divider> </md-list-item> <!-- <h4 align="right">Total Amount : {{totalItemAmount}}</h4> --></md-list>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="cardStyle">
+				<h4 align='center'>CATEGORIES</h4>
+				<div style="position: relative;">
+					<input type="text" ng-model="categoryname" placeholder="Search"
+						class="form-control" /> <a href="#" class="search-icon"> <i
+						class="fa fa-search" id="myimage"></i>
+					</a>
+				</div>
+				<md-list class="md-dense" style="height:300px;overflow:auto;" flex>
+				<md-list-item
+					ng-repeat="orderSubcategory in sales.subcategories | filter : categoryname">
+				<div class="row" style="width: 100%;">
+					<div class="col-xs-2">
+						<img ng-src="{{orderSubcategory.face}}?{{$index}}"
+							class="md-avatar" alt="{{orderSubcategory.who}}" />
+					</div>
+					<div class="col-xs-9">
+						<h4>{{ orderSubcategory.subCategory.subcategoryName }}</h4>
+						<p style="color: grey;">X {{ orderSubcategory.quantity }}</p>
+					</div>
+					<div class="col-xs-1">
+						<h4 align="right">{{ orderSubcategory.totalAmount }}</h4>
+					</div>
+				</div>
+				<md-divider></md-divider> </md-list-item><!-- <h4 align="right">Total Amount : {{totalCategoryAmount}}</h4> --> </md-list>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="cardStyle">
+				<h4 align='center'>ORDERS</h4>
+				<div style="position: relative;">
+					<input type="text" ng-model="allKeyword" placeholder="Search"
+						class="form-control" /> <a href="#" class="search-icon"> <i
+						class="fa fa-search" id="myimage"></i>
+					</a>
+				</div>
+				<table class="table table-striped table-hover">
+					<tr>
+						<th ng-click="sort('orderId')">Order id <span
+							class="glyphicon sort-icon" ng-show="sortKey=='orderId'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('orderDate')">Order date <span
+							class="glyphicon sort-icon" ng-show="sortKey=='orderDate'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<!-- <th ng-click="sort('paymentType')">Payment type <span
+							class="glyphicon sort-icon" ng-show="sortKey=='paymentType'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th> -->
+						<th ng-click="sort('totalAmount')">Bill Amount <span
+							class="glyphicon sort-icon" ng-show="sortKey=='totalAmount'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+					</tr>
+					<tr
+						dir-paginate="itemOrder in itemOrders | orderBy:sortKey:reverse| filter: allKeyword|itemsPerPage:10"
+						ng-dblclick="setItemOrder(itemOrder)">
+						<td>{{itemOrder.orderId}}</td>
+						<td>{{itemOrder.orderDate}}</td>
+						<!-- <td>{{itemOrder.paymentTypes[0].paymentTypeName}}</td> -->
+						<td>{{itemOrder.totalAmount}}</td>
+					</tr>
+				</table>
+
+					<!-- <h4 align="right">Total Amount : {{totalOrderAmount}}</h4> -->
+				<dir-pagination-controls max-size="5" direction-links="true"
+					boundary-links="true"> </dir-pagination-controls>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="cardStyle">
+				<h4 align='center'>OREDERED ITEMS</h4>
+				<div ng-if="itemOrder.orderedItems.length == 0"
+					style='text-align: center;'>Ordered items of selected order
+					will be displayed here.</div>
+				<div ng-if="itemOrder.orderedItems.length > 0">
+					<table class="table table-striped table-hover">
+						<tr>
+							<th>Item id</th>
+							<th>Item name</th>
+							<th>Quantity</th>
+							<th>Cost</th>
+						</tr>
+						<tr ng-repeat="item in itemOrder.orderedItems">
+							<td>{{item.item.itemId}}</td>
+							<td>{{item.item.itemName}}</td>
+							<td>{{item.quantity}}</td>
+							<td>{{item.quantity*item.item.price}}</td>
+						</tr>
+					</table>
+					<!-- <h4 align="right">Total Bill: {{itemOrder.totalAmount}}</h4> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="cardStyle">
+				<h4 align='center'>PAYMENT TYPES</h4>
+				<md-list class="md-dense"
+					style="width:100%;" flex> <md-list-item
+					ng-repeat="paymentType in paymentTypes | filter : itemname">
+				<div class="row" style="width: 100%;">
+					<div class="col-xs-9">
+						<h4>{{ paymentType.paymentTypeName }}</h4>
+					</div>
+					<div class="col-xs-1">
+						<h4 align="right">{{ paymentType.amount	}}</h4>
+					</div>
+				</div>
+				<md-divider></md-divider> </md-list-item> <!-- <h4 align="right">Total Credit Amount : {{totalPaymentAmount}}</h4> --> </md-list>
+			</div>
+		</div>
+	</div>
+	
+</div>

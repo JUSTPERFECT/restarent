@@ -1,0 +1,55 @@
+<md-dialog aria-label="Select payment method">
+	<form ng-cloak>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Select payment method</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="cancel()"> <md-icon
+					md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>		
+		
+		<md-content class="md-no-momentum" style="padding:20px;">
+		    <md-input-container class="md-icon-float md-block">
+		      <label>Payment type</label>
+		      <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+		      <md-select placeholder="Payment Type" ng-model="paymentType">
+		      <md-option ng-value="paymentType" ng-repeat="paymentType in paymentTypes">{{paymentType.paymentTypeName}}</md-option>
+		    </md-select>
+		    </md-input-container>
+		    
+		    <md-input-container class="md-icon-float md-block">
+		      <label>Payment category</label>
+		      <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+		      <md-select placeholder="Payment Category" ng-model="paymentCategory">
+		      <md-option ng-value="paymentCategory" ng-repeat="paymentCategory in paymentCategories">{{paymentCategory.paymentCategoryName}}</md-option>
+		    </md-select>
+		    </md-input-container>
+		
+		    <md-input-container class="md-block">
+		      <md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
+		      <md-select placeholder="Material category" ng-model="materialCategory">
+		      <md-option ng-value="materialCategory" ng-repeat="materialCategory in materialCategories">{{materialCategory.materialCategoryName}}</md-option>
+		    </md-select>
+		    </md-input-container>
+		
+		    <md-input-container class="md-block">
+		      <md-datepicker ng-model="paymentDate" placeholder="Payment date"></md-datepicker>
+		    </md-input-container>
+		
+		    <md-input-container class="md-block">
+		      <input type="text" ng-model="paymentAmount" placeholder="Payment Amount"/>
+		    </md-input-container>
+		
+		    <md-input-container class="md-icon-float md-icon-right md-block">
+		      <input type="file" ng-model="paymentBill" accept="image/*" placeholder="Payment Bill" app-filereader />
+		    </md-input-container>
+		
+		 </md-content>
+	
+		<md-dialog-actions layout="row"> <span flex></span>
+			<md-button ng-click="answer()"> ADD PAYMENTINFO </md-button> 
+		</md-dialog-actions>
+	</form>
+</md-dialog>

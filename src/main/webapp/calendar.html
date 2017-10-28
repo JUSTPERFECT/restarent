@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://fullcalendar.io/js/fullcalendar-3.5.1/demos/agenda-views.html -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link href="css/fullcalendar.min.css" rel="stylesheet">
+<link href="css/fullcalendar.print.min.css" rel="stylesheet"
+	media="print">
+<script src="js/moment.min.js.download"></script>
+<script src="js/jquery.min.js.download"></script>
+<script src="js/fullcalendar.min.js.download"></script>
+<script>
+	$(document).ready(function() {
+
+		$('#calendar').fullCalendar({
+			header : {
+				left : 'prev,next today',
+				center : 'title',
+				right : 'month,agendaWeek,agendaDay,listWeek'
+			},
+			defaultDate : '2017-09-12',
+			navLinks : true, // can click day/week names to navigate views
+			editable : true,
+			eventLimit : true, // allow "more" link when too many events
+			events : [ {
+				title : '1 : 50',
+				start : '2017-09-01',
+			}, {
+				title : '2 : 100',
+				start : '2017-09-01T16:00:00',
+			},{
+				title : '3 : 100',
+				start : '2017-09-01T16:00:00',
+			},{
+				title : 'Long Event',
+				start : '2017-09-07',
+				end : '2017-09-10'
+			}, {
+				id : 999,
+				title : 'Repeating Event',
+				start : '2017-09-09T16:00:00'
+			}, {
+				id : 999,
+				title : 'Repeating Event',
+				start : '2017-09-16T16:00:00'
+			}, {
+				title : 'Conference',
+				start : '2017-09-11',
+				end : '2017-09-13'
+			}, {
+				title : 'Meeting',
+				start : '2017-09-12T10:30:00',
+				end : '2017-09-12T12:30:00'
+			}, {
+				title : 'Lunch',
+				start : '2017-09-12T12:00:00'
+			}, {
+				title : 'Meeting',
+				start : '2017-09-12T14:30:00'
+			}, {
+				title : 'Happy Hour',
+				start : '2017-09-12T17:30:00'
+			}, {
+				title : 'Dinner',
+				start : '2017-09-12T20:00:00'
+			}, {
+				title : 'Birthday Party',
+				start : '2017-09-13T07:00:00'
+			}, {
+				title : 'Click for Google',
+				url : 'http://google.com/',
+				start : '2017-09-28'
+			} ]
+		});
+
+	});
+</script>
+<style>
+body {
+	margin: 40px 10px;
+	padding: 0;
+	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+	font-size: 14px;
+}
+
+#calendar {
+	max-width: 900px;
+	margin: 0 auto;
+}
+</style>
+</head>
+<body class="">
+
+	<div id="calendar" class="fc fc-unthemed fc-ltr">
+		<!-- <div class="fc-toolbar fc-header-toolbar">
+			<div class="fc-left">
+				<div class="fc-button-group">
+					<button type="button"
+						class="fc-prev-button fc-button fc-state-default fc-corner-left">
+						<span class="fc-icon fc-icon-left-single-arrow"></span>
+					</button>
+					<button type="button"
+						class="fc-next-button fc-button fc-state-default fc-corner-right">
+						<span class="fc-icon fc-icon-right-single-arrow"></span>
+					</button>
+				</div>
+				<button type="button"
+					class="fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right">today</button>
+			</div>
+			<div class="fc-right">
+				<div class="fc-button-group">
+					<button type="button"
+						class="fc-month-button fc-button fc-state-default fc-corner-left">month</button>
+					<button type="button"
+						class="fc-agendaWeek-button fc-button fc-state-default">week</button>
+					<button type="button"
+						class="fc-agendaDay-button fc-button fc-state-default">day</button>
+					<button type="button"
+						class="fc-listWeek-button fc-button fc-state-default fc-corner-right fc-state-active">list</button>
+				</div>
+			</div>
+			<div class="fc-center">
+				<h2>Aug 27 – Sep 2, 2017</h2>
+			</div>
+			<div class="fc-clear"></div>
+		</div>
+		<div class="fc-view-container" style="">
+			<div class="fc-view fc-listWeek-view fc-list-view fc-widget-content"
+				style="">
+				<div class="fc-scroller"
+					style="overflow-x: hidden; overflow-y: auto; height: 665px;">
+					<table class="fc-list-table ">
+						<tbody>
+							<tr class="fc-list-heading" data-date="2017-09-01">
+								<td class="fc-widget-header" colspan="3"><a
+									class="fc-list-heading-main"
+									data-goto="{&quot;date&quot;:&quot;2017-09-01&quot;,&quot;type&quot;:&quot;day&quot;}">Friday</a>
+									<a class="fc-list-heading-alt"
+									data-goto="{&quot;date&quot;:&quot;2017-09-01&quot;,&quot;type&quot;:&quot;day&quot;}">
+										September 1, 2017</a></td>
+							</tr>
+							<tr class="fc-list-item">
+								<td class="fc-list-item-time fc-widget-content">all-day</td>
+								<td class="fc-list-item-marker fc-widget-content"><span
+									class="fc-event-dot"></span></td>
+								<td class="fc-list-item-title fc-widget-content"><a>All
+										Day Event</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div> -->
+	</div>
+</body>
+</html>

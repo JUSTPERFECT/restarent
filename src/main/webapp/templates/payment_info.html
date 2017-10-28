@@ -1,0 +1,109 @@
+<div ng-controller="PaymentInfoController">
+	<div class="row">
+		<div class="col-md-12" style="text-align: center;">
+			<div class="cardStyle">
+				<div style="display: inline-block; margin-right: 50px">
+					<span> FROM</span>
+					<md-datepicker ng-model="dateFrom" md-placeholder="Enter date"></md-datepicker>
+				</div>
+				<div style="display: inline-block; margin-right: 50px">
+					<span> TO</span>
+					<md-datepicker ng-model="dateTo" md-placeholder="Enter date"></md-datepicker>
+				</div>
+				<div style="display: inline-block;">
+					<md-button class="md-primary md-raised" ng-click="filterWithDate()">
+					FILTER </md-button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-12" style="text-align:center">
+			<h4>Total Debit Amount : {{totalDebitAmount}}</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="cardStyle">
+				<h4 align='center'>PAYMENT INFO</h4>
+				<div style="position: relative;">
+					<input type="text" ng-model="allKeyword" placeholder="Search"
+						class="form-control" /> <a href="#" class="search-icon"> <i
+						class="fa fa-search" id="myimage"></i>
+					</a>
+				</div>
+				<table class="table table-striped table-hover">
+					<tr>
+						<th ng-click="sort('user_id')">User id <span
+							class="glyphicon sort-icon" ng-show="sortKey=='user_id'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('user_name')">User name <span
+							class="glyphicon sort-icon" ng-show="sortKey=='user_name'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('material_category')">Material category <span
+							class="glyphicon sort-icon"
+							ng-show="sortKey=='material_category'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('payment_type')">Payment type <span
+							class="glyphicon sort-icon" ng-show="sortKey=='payment_type'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('payment_category')">Payment category <span
+							class="glyphicon sort-icon" ng-show="sortKey=='payment_category'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('payment_date')">Payment date <span
+							class="glyphicon sort-icon" ng-show="sortKey=='payment_date'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('payment_amount')">Payment amount <span
+							class="glyphicon sort-icon" ng-show="sortKey=='payment_amount'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('payment_bill')">Payment bill <span
+							class="glyphicon sort-icon" ng-show="sortKey=='payment_bill'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+					</tr>
+					<tr
+						dir-paginate="paymentInfo in paymentInfos | orderBy:sortKey:reverse| filter: allKeyword|itemsPerPage:10">
+						<td>{{paymentInfo.user.userId}}</td>
+						<td>{{paymentInfo.user.userName}}</td>
+						<td>{{paymentInfo.materialCategory.materialCategoryName}}</td>
+						<td>{{paymentInfo.paymentType.paymentTypeName}}</td>
+						<td>{{paymentInfo.paymentCategory.paymentCategoryName}}</td>
+						<td>{{paymentInfo.paymentDate}}</td>
+						<td>{{paymentInfo.paymentAmount}}</td>
+						<td><img style="width: 150px; height: auto;"
+							ng-src="{{paymentInfo.paymentBill}}" /></td>
+					</tr>
+				</table>
+
+				<dir-pagination-controls max-size="5" direction-links="true"
+					boundary-links="true"> </dir-pagination-controls>
+			</div>
+			<div class="dialog-demo-content" layout="row" layout-wrap
+				layout-margin layout-align="center">
+				<md-button class="md-primary md-raised"
+					ng-click="openPaymentInfoDialog($event)"> ADD PAYMENT
+				INFO </md-button>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="cardStyle">
+				<h4 align='center'>PAYMENT TYPES</h4>
+				<md-list class="md-dense"
+					style="width:100%;" flex> <md-list-item
+					ng-repeat="paymentType in paymentTypes | filter : itemname">
+				<div class="row" style="width: 100%;">
+					<div class="col-xs-9">
+						<h4>{{ paymentType.paymentTypeName }}</h4>
+					</div>
+					<div class="col-xs-1">
+						<h4 align="right">{{ paymentType.amount	}}</h4>
+					</div>
+				</div>
+				<md-divider></md-divider> </md-list-item> <!-- <h4 align="right">Total Credit Amount : {{totalPaymentAmount}}</h4> --> </md-list>
+			</div>
+		</div>
+	</div>
+</div>

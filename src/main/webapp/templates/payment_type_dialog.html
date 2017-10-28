@@ -1,0 +1,36 @@
+<md-dialog aria-label="Select payment method">
+	<form ng-cloak>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Payment method</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="cancel()"> <md-icon
+					md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+	
+		<md-dialog-content style="padding:20px;" ><!-- 
+			<div class="md-dialog-content">
+				<md-radio-group ng-model="payment"> 
+					<md-radio-button ng-repeat="paymentType in paymentTypes" ng-value="paymentType.paymentTypeId" required> {{ paymentType.paymentTypeName }} </md-radio-button> 
+				</md-radio-group>
+			</div>
+			 -->
+			
+			<div class="demo-select-all-checkboxes" flex="100" ng-repeat="paymentType in paymentTypes">
+              <md-checkbox ng-checked="exists(paymentType, selected)" ng-click="toggle(paymentType, selected)">
+               	{{ paymentType.paymentTypeName }}
+              </md-checkbox>
+              <input type="text" ng-model="paymentType.amount" value="{{totalAmount}}"/>
+            </div>
+			
+			
+			
+		</md-dialog-content>
+	
+		<md-dialog-actions layout="row"> <span flex></span>
+			<md-button ng-click="answer()"> PLACE ORDER </md-button> 
+		</md-dialog-actions>
+	</form>
+</md-dialog>

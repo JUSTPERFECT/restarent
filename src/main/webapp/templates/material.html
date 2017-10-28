@@ -1,0 +1,86 @@
+<div class="row" ng-controller="MaterialController">
+	<div class="col-md-7">
+		<div class="cardStyle">
+			<h4 align='center'>MATERIALS</h4>
+			<div style="position:relative;">
+				<input type="text" ng-model="allKeyword" placeholder="Search" class="form-control"/>
+			    <a href="#" class="search-icon">
+			        <i class="fa fa-search" id="myimage"></i>
+			    </a>
+			</div>
+			<table class="table table-striped table-hover"
+				>
+				<tr>
+					<th ng-click="sort('materialId')">Material id <span
+						class="glyphicon sort-icon" ng-show="sortKey=='materialId'"
+						ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+					<th ng-click="sort('materialName')">Material name <span
+						class="glyphicon sort-icon" ng-show="sortKey=='materialName'"
+						ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+					<!-- <th ng-click="sort('materialDesc')">material desc <span
+						class="glyphicon sort-icon" ng-show="sortKey=='materialDesc'"
+						ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th> -->
+					<th ng-click="sort('category')">Category <span
+						class="glyphicon sort-icon" ng-show="sortKey=='category'"
+						ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+					<th ng-click="sort('quantityType')">Quantity type <span
+						class="glyphicon sort-icon" ng-show="sortKey=='quantityType'"
+						ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+					<th ng-click="sort('quantity')">Quantity <span
+						class="glyphicon sort-icon" ng-show="sortKey=='quantity'"
+						ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+					<th ng-click="sort('pack_cost')">Pack cost <span
+						class="glyphicon sort-icon" ng-show="sortKey=='pack_cost'"
+						ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+				</tr>
+				<tr
+					dir-paginate="material in materials | orderBy:sortKey:reverse| filter: allKeyword|itemsPerPage:10"
+					ng-dblclick="addToMaterialOrder(material)">
+					<td>{{material.materialId}}</td>
+					<td>{{material.materialName}}</td>
+					<!-- <td>{{material.materialDesc}}</td> -->
+					<td>{{material.materialCategory.materialCategoryName}}</td>
+					<td>{{material.quantityType.quantityTypeName}}</td>
+					<td>{{material.quantity}}</td>
+					<td>{{material.packCost}}</td>
+				</tr>
+			</table>
+
+			<dir-pagination-controls max-size="5" direction-links="true"
+				boundary-links="true"> </dir-pagination-controls>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<div class="cardStyle">
+			<h4 align='center'>ORDERED MATERIALS</h4>
+			<div ng-if="materialOrder.orderedMaterials.length == 0"
+				style='text-align: center;'>Ordered materials will be
+				displayed here.</div>
+			<div ng-if="materialOrder.orderedMaterials.length > 0">
+				<table class="table table-striped table-hover"
+					>
+					<tr>
+						<th>Material id</th>
+						<th>Material name</th>
+						<th>Quantity</th>
+						<th>Cost</th>
+					</tr>
+					<tr ng-repeat="material in materialOrder.orderedMaterials">
+						<td>{{material.material.materialId}}</td>
+						<td>{{material.material.materialName}}</td>
+						<td><input type="number" style="width: 40px;" min="0"
+							ng-model="material.quantity" ng-change="updateTotalCost()"></td>
+						<td>{{material.quantity*material.material.packCost}}</td>
+					</tr>
+				</table>
+				<h4 align="right">Total Amount: {{materialOrder.totalAmount}}</h4>
+			</div>
+			<div ng-if="materialOrder.orderedMaterials.length > 0"
+				class="dialog-demo-content" layout="row" layout-wrap layout-margin
+				layout-align="center">
+				<md-button class="md-primary md-raised" ng-click="materialOrderUp()">
+				PLACE ORDER </md-button>
+			</div>
+		</div>
+	</div>
+</div>

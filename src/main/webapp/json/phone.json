@@ -1,0 +1,3 @@
+[{ "itemId": "1", "itemName": "Sweet Lassi", "subcategory" : "LASSI", "category": "Normal"},
+{ "itemId": "2", "itemName": "Salt Lassi", "subcategory": "LASSI" , "category": "Normal"},
+{ "itemId": "3", "itemName": "Paan Lassi", "subcategory": "LASSI" , "category": "Normal"}]

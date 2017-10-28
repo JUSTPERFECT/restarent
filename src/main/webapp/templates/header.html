@@ -1,0 +1,10 @@
+<div class="md-toolbar-tools">
+     <ng-md-icon icon="menu" ng-show="globals.currentUser.userName" ng-click="toggleLeft()"></ng-md-icon>
+     <h3>
+          &nbsp;&nbsp;&nbsp;{{header}}
+     </h3>
+     <span flex></span>
+     <span ng-show="globals.currentUser.userName">Welcome {{globals.currentUser.userName}}</span>
+     <md-button ng-show="globals.currentUser.userName" class="md-primary md-raised"
+					ng-click="logout()"> LOGOUT </md-button>
+</div>

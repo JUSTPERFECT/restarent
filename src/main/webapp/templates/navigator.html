@@ -1,0 +1,30 @@
+<section layout="row" flex>
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop md-whiteframe="4">
+	  <md-list>
+	      <md-item ng-repeat="item in menu">
+	        <a href="#{{item.link}}">
+	          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+	            <div class="inset">
+	              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+	            </div>
+	            <div class="inset">{{item.title}}
+	            </div>
+	          </md-item-content>
+	        </a>
+	      </md-item>
+	      <md-divider></md-divider>
+	      <md-subheader ng-if="globals.currentUser.role.roleId==1">Management</md-subheader>
+	      <md-item ng-if="globals.currentUser.role.roleId==1" ng-repeat="item in admin">
+	        <a href="#{{item.link}}">
+	          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+	            <div class="inset">
+	              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+	            </div>
+	            <div class="inset">{{item.title}}
+	            </div>
+	          </md-item-content>
+	        </a>
+	      </md-item>
+    	</md-list>
+    </md-sidenav>
+</section>

@@ -1,0 +1,3 @@
+[{ "materialId": 1, "materialName": "Sweet Lassi", "materialDesc":"Sweet Lassi","quantityType":{"quantityTypeName":"kg"},"quantity" : "30"},
+{ "materialId": 2, "materialName": "Salt Lassi", "materialDesc":"Salt Lassi","quantityType":{"quantityTypeName":"lt"},"quantity": "45"},
+{ "materialId": 3, "materialName": "Paan Lassi", "materialDesc":"Paan Lassi","quantityType":{"quantityTypeName":"Pack"},"quantity": "50"}]

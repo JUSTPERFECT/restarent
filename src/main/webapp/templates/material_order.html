@@ -1,0 +1,63 @@
+<div class="row" ng-controller="MaterialOrderController">
+	<div class="col-md-7">
+		<div class="cardStyle">
+			<h4 align='center'>MATERIAL ORDERS</h4>
+			<div style="position:relative;">
+				<input type="text" ng-model="allKeyword" placeholder="Search" class="form-control"/>
+			    <a href="#" class="search-icon">
+			        <i class="fa fa-search" id="myimage"></i>
+			    </a>
+			</div>
+			<table class="table table-striped table-hover"
+				>
+				<tr>
+					<th ng-click="sort('orderId')">Order id <span
+						class="glyphicon sort-icon" ng-show="sortKey=='orderId'"
+						ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+					<th ng-click="sort('orderDate')">Order date <span
+						class="glyphicon sort-icon" ng-show="sortKey=='orderDate'"
+						ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+					<th ng-click="sort('totalAmount')">Total amount <span
+						class="glyphicon sort-icon" ng-show="sortKey=='totalAmount'"
+						ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+				</tr>
+				<tr
+					dir-paginate="materialOrder in materialOrders | orderBy:sortKey:reverse| filter: allKeyword|itemsPerPage:10"
+					ng-dblclick="setMaterialOrder(materialOrder)">
+					<td>{{materialOrder.orderId}}</td>
+					<td>{{materialOrder.orderDate}}</td>
+					<td>{{materialOrder.totalAmount}}</td>
+				</tr>
+			</table>
+
+			<dir-pagination-controls max-size="5" direction-links="true"
+				boundary-links="true"> </dir-pagination-controls>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<div class="cardStyle">
+			<h4 align='center'>ORDERED MATERIALS</h4>
+			<div ng-if="materialOrder.orderedMaterials.length == 0"
+				style='text-align: center;'>Ordered materials will be
+				displayed here.</div>
+			<div ng-if="materialOrder.orderedMaterials.length > 0">
+				<table class="table table-striped table-hover"
+					>
+					<tr>
+						<th>Material id</th>
+						<th>Material name</th>
+						<th>Quantity</th>
+						<th>Cost</th>
+					</tr>
+					<tr ng-repeat="material in materialOrder.orderedMaterials">
+						<td>{{material.material.materialId}}</td>
+						<td>{{material.material.materialName}}</td>
+						<td>{{material.quantity}}</td>
+						<td>{{material.quantity*material.material.packCost}}</td>
+					</tr>
+				</table>
+				<h4 align="right">Total Amount: {{materialOrder.totalAmount}}</h4>
+			</div>
+		</div>
+	</div>
+</div>

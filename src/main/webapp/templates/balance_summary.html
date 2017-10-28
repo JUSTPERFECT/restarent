@@ -1,0 +1,54 @@
+<div ng-controller="BalanceController">
+	<div class="row" style="margin: 10px;">
+		<div class="cardStyle" style="padding: 2px;">
+			<div style="display: inline-block; margin-right: 50px">
+				<span> Date</span>
+				<md-datepicker ng-model="date" md-placeholder="Enter date"></md-datepicker>
+			</div>
+			<div style="display: inline-block;">
+				<md-button class="md-primary md-raised" ng-click="filterWithDate()">
+				FILTER </md-button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="cardStyle">
+				<h4 align='center'>BALANCE SUMMARY</h4>
+				<div style="position: relative;">
+					<input type="text" ng-model="allKeyword" placeholder="Search"
+						class="form-control" /> <a href="#" class="search-icon"> <i
+						class="fa fa-search" id="myimage"></i>
+					</a>
+				</div>
+				<table class="table table-striped table-hover">
+					<tr>
+						<th ng-click="sort('credit_amount')">Credit Amount <span
+							class="glyphicon sort-icon" ng-show="sortKey=='credit_amount'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('debit_amount')">Debit Amount <span
+							class="glyphicon sort-icon" ng-show="sortKey=='debit_amount'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('discurbance')">Discurbance <span
+							class="glyphicon sort-icon" ng-show="sortKey=='discurbance'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('counter_cash')">Counter cash <span
+							class="glyphicon sort-icon" ng-show="sortKey=='counter_cash'"
+							ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+
+					</tr>
+					<tr
+						dir-paginate="balanceInfo in balanceInfos | orderBy:sortKey:reverse| filter: allKeyword|itemsPerPage:10">
+						<td>{{balanceInfo.creditAmount}}</td>
+						<td>{{balanceInfo.debitAmount}}</td>
+						<td>{{balanceInfo.discurbance}}</td>
+						<td>{{balanceInfo.counterCash}}</td>
+					</tr>
+				</table>
+
+				<dir-pagination-controls max-size="5" direction-links="true"
+					boundary-links="true"> </dir-pagination-controls>
+			</div>
+		</div>
+	</div>
+</div>

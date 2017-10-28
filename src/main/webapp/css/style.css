@@ -1,0 +1,82 @@
+.navigator{
+	background-color:#003452;
+	color:white;
+}
+
+.navigator a{
+	color:white;
+}
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    margin-top: -10px;
+}
+
+md-content.md-default-theme {
+  background-color: #eee;
+}
+md-card {
+  background-color: #fff;
+}
+md-card h2:first-of-type {
+  margin-top: 0;
+}
+md-toolbar .md-button.md-default-theme {
+  border-radius: 99%; 
+}
+h2 {
+  font-weight: 400;
+}
+.md-toolbar-tools-bottom {
+  font-size: small;
+}
+.md-toolbar-tools-bottom:last-child {
+    opacity: 0.8;
+}
+md-toolbar:not(.md-hue-1),
+.md-fab {
+  fill: #fff;
+}
+md-sidenav {
+  fill: #737373;
+}
+md-sidenav  ng-md-icon {
+    position: relative;
+    top: 5px; 
+}
+.user-avatar {
+  border-radius: 99%;
+}
+
+a {
+  text-decoration: none;
+  color: gray;
+}
+
+.table{
+	margin:1px;
+	width:100%; border: 1px solid #DCDCDC
+}
+
+.cardStyle{
+	background-color:white;
+	border-radius:5px;
+	padding-top:2px;
+	width:100%;
+}
+
+.checkboxdemoSelectAll .demo-legend {
+  color: #3F51B5; }
+
+.checkboxdemoSelectAll .demo-fieldset {
+  border-style: solid;
+  border-width: 1px;
+  height: 100%; }
+
+.checkboxdemoSelectAll .demo-select-all-checkboxes {
+  padding-left: 30px; }
+  
+table{
+	cursor:pointer;
+}

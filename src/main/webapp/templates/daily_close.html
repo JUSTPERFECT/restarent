@@ -1,0 +1,29 @@
+<div ng-controller="DailyCloseController">
+	<div class="row">
+		<div class="cardStyle" style="padding: 2px;">
+			<div style="display: inline-block; margin-right: 50px">
+				<span> Date</span>
+				<md-datepicker ng-model="date" md-placeholder="Enter date"></md-datepicker>
+			</div>
+			<div style="display: inline-block;">
+				<md-button class="md-primary md-raised" ng-click="filterWithDate()">
+				FILTER </md-button>
+			</div>
+		</div>
+		<div ng-repeat="paymentType in paymentTypes">
+		   	<span>{{ paymentType.paymentTypeName }}</span>
+		 	<input type="text" ng-model="paymentType.amount" value="0"/>
+		</div>
+		<div>
+			Counter cash left : <input type="text" ng-model="balanceSummary.counterCash"/>
+		</div>
+		<div>
+			Difference : {{balanceSummary.discrubance}}
+		</div>
+		<div class="dialog-demo-content" layout="row" layout-wrap layout-margin
+				layout-align="center">
+				<md-button class="md-primary md-raised"
+					ng-click="addDialyCloseInfo()"> ADD INFO </md-button>
+		</div>
+	</div>
+</div>
